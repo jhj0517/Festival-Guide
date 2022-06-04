@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ongoing_festival_title_margin_top">40dp</dimen>
+    <dimen name="ongoing_festival_rv_margin_top">30dp</dimen>
+    <dimen name="view_height">200dp</dimen>
+</resources>

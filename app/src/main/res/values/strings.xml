@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TeamJeJuDo</string>
+    <string name="ongoing_festival_title">진행중인 축제</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="festival_fragment_label">Festival Fragment</string>
+    <string name="festival_detail_fragment_label">Festival Detail Fragment</string>
+</resources>

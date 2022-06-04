@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/WorkSpace/TeamJeJuDo/app/src/main/res/font/title_font.xml" value="0.20833333333333334" />
+        <entry key="..\:/WorkSpace/TeamJeJuDo/app/src/main/res/layout/activity_main.xml" value="0.1408514492753623" />
+        <entry key="..\:/WorkSpace/TeamJeJuDo/app/src/main/res/layout/cell_festival.xml" value="0.18857142857142858" />
+        <entry key="..\:/WorkSpace/TeamJeJuDo/app/src/main/res/layout/content_main.xml" value="0.18857142857142858" />
+        <entry key="..\:/WorkSpace/TeamJeJuDo/app/src/main/res/layout/fragment_festival.xml" value="0.18857142857142858" />
+        <entry key="..\:/WorkSpace/TeamJeJuDo/app/src/main/res/layout/fragment_first.xml" value="0.16666666666666666" />
+        <entry key="..\:/WorkSpace/TeamJeJuDo/app/src/main/res/layout/fragment_second.xml" value="0.16666666666666666" />
+        <entry key="..\:/WorkSpace/TeamJeJuDo/app/src/main/res/menu/menu_main.xml" value="0.18229166666666666" />
+        <entry key="..\:/WorkSpace/TeamJeJuDo/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.155" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
