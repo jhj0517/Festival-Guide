@@ -1,6 +1,7 @@
 package com.example.teamjejudo.screen.festival
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.hardware.lights.LightsManager
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -31,8 +32,8 @@ class FestivalFragment : Fragment() {
     private var _binding: FragmentFestivalBinding? = null
     private var festival = ArrayList<Festival.Response.Body.Items.Item>()
     private var likes : MutableList<Int> = mutableListOf()
-
     private val binding get() = _binding!!
+    lateinit var progress : ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +47,10 @@ class FestivalFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        progress = ProgressDialog(view.context)
+        progress.setTitle("Loading")
+        progress.setCancelable(false)
+        progress.show()
         getFestival()
         initFestivalAdapter()
         frv = binding.rvFestival
@@ -81,7 +86,7 @@ class FestivalFragment : Fragment() {
         Thread(r).start()
         binding.rvFestival.adapter = FestivalAdapter(festival, requireContext(), likes)
         binding.rvFestival.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         Timber.d("sdfsdfsdfsdfsdfsdf")
     }
 
@@ -98,6 +103,7 @@ class FestivalFragment : Fragment() {
             override fun onResponse(call: Call<Festival>, response: Response<Festival>) {
                 festival.addAll(response.body()!!.response.body.items.item)
                 binding.rvFestival.adapter?.notifyDataSetChanged()
+                progress.dismiss()
             }
 
             override fun onFailure(call: Call<Festival>, t: Throwable) {
