@@ -1,10 +1,9 @@
 package com.example.teamjejudo.data
 
+
 import com.google.gson.annotations.SerializedName
 
-//http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival
-
-data class Festival(
+data class AreaBased(
     @SerializedName("response")
     val response: Response
 ) {
@@ -26,13 +25,11 @@ data class Festival(
         ) {
             data class Items(
                 @SerializedName("item")
-                val item: List<Item>
+                val item: Item
             ) {
                 data class Item(
                     @SerializedName("addr1")
                     val addr1: String,
-                    @SerializedName("addr2")
-                    val addr2: String,
                     @SerializedName("areacode")
                     val areacode: Int,
                     @SerializedName("cat1")
@@ -47,10 +44,6 @@ data class Festival(
                     val contenttypeid: Int,
                     @SerializedName("createdtime")
                     val createdtime: Long,
-                    @SerializedName("eventenddate")
-                    val eventenddate: Int,
-                    @SerializedName("eventstartdate")
-                    val eventstartdate: Int,
                     @SerializedName("firstimage")
                     val firstimage: String,
                     @SerializedName("firstimage2")
@@ -58,7 +51,7 @@ data class Festival(
                     @SerializedName("mapx")
                     val mapx: Double,
                     @SerializedName("mapy")
-                    val mapy: Any,
+                    val mapy: Double,
                     @SerializedName("mlevel")
                     val mlevel: Int,
                     @SerializedName("modifiedtime")
@@ -67,10 +60,10 @@ data class Festival(
                     val readcount: Int,
                     @SerializedName("sigungucode")
                     val sigungucode: Int,
-                    @SerializedName("tel")
-                    val tel: String,
                     @SerializedName("title")
-                    val title: String
+                    val title: String,
+                    @SerializedName("zipcode")
+                    val zipcode: Int
                 )
             }
         }
