@@ -29,8 +29,16 @@ data class FestivalDetail(
                 data class Item(
                     @SerializedName("addr1")
                     val addr1: String,
+                    @SerializedName("areacode")
+                    val areacode: Int,
                     @SerializedName("booktour")
                     val booktour: Int,
+                    @SerializedName("cat1")
+                    val cat1: String,
+                    @SerializedName("cat2")
+                    val cat2: String,
+                    @SerializedName("cat3")
+                    val cat3: String,
                     @SerializedName("contentid")
                     val contentid: Int,
                     @SerializedName("contenttypeid")
@@ -43,10 +51,18 @@ data class FestivalDetail(
                     val firstimage2: String,
                     @SerializedName("homepage")
                     val homepage: String,
+                    @SerializedName("mapx")
+                    val mapx: Double,
+                    @SerializedName("mapy")
+                    val mapy: Double,
+                    @SerializedName("mlevel")
+                    val mlevel: Int,
                     @SerializedName("modifiedtime")
                     val modifiedtime: Long,
                     @SerializedName("overview")
                     val overview: String,
+                    @SerializedName("sigungucode")
+                    val sigungucode: Int,
                     @SerializedName("title")
                     val title: String,
                     @SerializedName("zipcode")

@@ -61,7 +61,7 @@ class SearchAdapter(private val items : List<Festival.Response.Body.Items.Item>)
                 val filterPattern = constraint.toString().lowercase().trim{it<= ' '}
 
                 for(item in items){
-                    if (item.title.contains(filterPattern)){
+                    if (Chosung.match(filterPattern,item.title)){
                         filteredList.add(item)
                     }
                 }

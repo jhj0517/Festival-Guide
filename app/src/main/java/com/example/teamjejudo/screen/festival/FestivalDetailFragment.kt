@@ -14,6 +14,7 @@ import com.example.teamjejudo.data.FestivalDetail
 import com.example.teamjejudo.databinding.FragmentFestivalDetailBinding
 import com.example.teamjejudo.retrofit.Key
 import com.example.teamjejudo.retrofit.RetrofitClass
+import com.google.android.material.tabs.TabLayout
 import retrofit2.Call
 import retrofit2.Response
 import java.net.URLDecoder
@@ -34,10 +35,8 @@ class FestivalDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentFestivalDetailBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,6 +46,33 @@ class FestivalDetailFragment : Fragment() {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
         getDetail(num)
+        binding.detailTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when(tab!!.position){
+                    0->{
+                        binding.detailContent.visibility=View.VISIBLE
+                        binding.view3.visibility=View.VISIBLE
+                        binding.textView4.visibility=View.VISIBLE
+                        binding.nearPlaceRV.visibility=View.GONE
+                    }
+                    1 -> {
+                        binding.detailContent.visibility=View.GONE
+                        binding.view3.visibility=View.GONE
+                        binding.textView4.visibility=View.GONE
+                        binding.nearPlaceRV.visibility=View.VISIBLE
+                    }
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+
+        })
     }
 
     override fun onDestroyView() {
