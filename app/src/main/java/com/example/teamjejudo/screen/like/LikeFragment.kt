@@ -1,6 +1,7 @@
 package com.example.teamjejudo.screen.like
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -32,8 +33,13 @@ class LikeFragment : Fragment() {
     private val likes: MutableList<Int> = mutableListOf()
     private var _binding: FragmentLikeBinding? = null
     private val binding get() = _binding!!
+    lateinit var progress : ProgressDialog
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        progress = ProgressDialog(view.context)
+        progress.setTitle("Loading")
+        progress.setCancelable(false)
+        progress.show()
         binding.likeRecyclerView.layoutManager = LinearLayoutManager(view.context)
         binding.likeRecyclerView.setHasFixedSize(true)
         binding.likeRecyclerView.adapter = LikeFestivalAdapter(likeFestival, likes)
@@ -96,6 +102,7 @@ class LikeFragment : Fragment() {
             binding.root.post {
                 binding.likeRecyclerView.adapter?.notifyDataSetChanged()
                 binding.likeAreaRecyclerView.adapter?.notifyDataSetChanged()
+                progress.dismiss()
             }
         }
         Thread(r).start()

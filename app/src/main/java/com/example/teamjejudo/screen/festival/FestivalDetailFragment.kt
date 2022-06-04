@@ -1,6 +1,7 @@
 package com.example.teamjejudo.screen.festival
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -38,7 +39,7 @@ class FestivalDetailFragment : Fragment() {
     val contentId: FestivalDetailFragmentArgs by navArgs()
     private val place = mutableListOf<AreaBased.Response.Body.Items.Item>()
     private val likes = mutableListOf<Int>()
-
+    lateinit var progress : ProgressDialog
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -52,6 +53,10 @@ class FestivalDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        progress = ProgressDialog(view.context)
+        progress.setTitle("Loading")
+        progress.setCancelable(false)
+        progress.show()
         var num = contentId.contentId
         binding.buttonSecond.setOnClickListener {
             findNavController().popBackStack()
@@ -172,8 +177,8 @@ class FestivalDetailFragment : Fragment() {
             override fun onResponse(call: Call<AreaBased>, response: Response<AreaBased>) {
                 place.addAll(response.body()!!.response.body.items.item)
                 binding.nearPlaceRV.adapter?.notifyDataSetChanged()
+                progress.dismiss()
             }
-
             override fun onFailure(call: Call<AreaBased>, t: Throwable) {
                 t.printStackTrace()
             }
