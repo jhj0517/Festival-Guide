@@ -1,6 +1,7 @@
 package com.example.teamjejudo.data
 
 
+import com.example.teamjejudo.room.LikePlace
 import com.google.gson.annotations.SerializedName
 
 data class AreaBased(
@@ -64,7 +65,30 @@ data class AreaBased(
                     val title: String,
                     @SerializedName("zipcode")
                     val zipcode: Int
-                )
+                ) {
+                    fun toEntity(): LikePlace {
+                        return LikePlace(
+                            addr1,
+                            areacode,
+                            cat1,
+                            cat2,
+                            cat3,
+                            contentid,
+                            contenttypeid,
+                            createdtime,
+                            firstimage,
+                            firstimage2,
+                            mapx,
+                            mapy,
+                            mlevel,
+                            modifiedtime,
+                            readcount,
+                            sigungucode,
+                            title,
+                            zipcode
+                        )
+                    }
+                }
             }
         }
 

@@ -20,6 +20,7 @@ import com.example.teamjejudo.adapter.PlaceAdapter
 import com.example.teamjejudo.data.AreaBased
 import com.example.teamjejudo.data.FestivalDetail
 import com.example.teamjejudo.databinding.FragmentFestivalDetailBinding
+import com.example.teamjejudo.likeDB
 import com.example.teamjejudo.retrofit.Key
 import com.example.teamjejudo.retrofit.RetrofitClass
 import com.google.android.material.tabs.TabLayout
@@ -30,11 +31,13 @@ import java.net.URLDecoder
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
+lateinit var nrv : RecyclerView
 class FestivalDetailFragment : Fragment() {
 
     private var _binding: FragmentFestivalDetailBinding? = null
     val contentId: FestivalDetailFragmentArgs by navArgs()
     private val place = mutableListOf<AreaBased.Response.Body.Items.Item>()
+    private val likes = mutableListOf<Int>()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -54,10 +57,16 @@ class FestivalDetailFragment : Fragment() {
             findNavController().popBackStack()
         }
         getDetail(num)
+        val r = Runnable {
+            likes.addAll(likeDB.dao().getAll())
+        }
+        Thread(r).start()
         binding.nearPlaceRV.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
         binding.nearPlaceRV.setHasFixedSize(true)
-        binding.nearPlaceRV.adapter = PlaceAdapter(place)
+
+        binding.nearPlaceRV.adapter = PlaceAdapter(place, likes)
+        nrv = binding.nearPlaceRV
         binding.detailTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab!!.position) {

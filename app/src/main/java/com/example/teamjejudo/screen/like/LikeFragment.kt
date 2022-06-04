@@ -41,6 +41,7 @@ class LikeFragment : Fragment() {
         binding.likeAreaRecyclerView.setHasFixedSize(true)
         binding.likeAreaRecyclerView.adapter=LikePlaceAdapter(likePlace,likes)
         lrv = binding.likeRecyclerView
+        lprv=binding.likeAreaRecyclerView
         update()
         binding.backButton.setOnClickListener {
             findNavController().navigate(R.id.action_LikeFragment_to_FIrstFragment)
@@ -87,6 +88,8 @@ class LikeFragment : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     fun update() {
         val r = Runnable {
+            likePlace.clear()
+            likeFestival.clear()
             likes.addAll(likeDB.dao().getAll())
             likeFestival.addAll(likeFestivalDB.dao().getAll())
             likePlace.addAll(likePlaceDB.dao().getAll())

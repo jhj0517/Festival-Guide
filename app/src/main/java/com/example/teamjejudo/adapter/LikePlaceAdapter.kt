@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.teamjejudo.R
@@ -15,6 +16,7 @@ import com.example.teamjejudo.likeFestivalDB
 import com.example.teamjejudo.likePlaceDB
 import com.example.teamjejudo.room.LikeFestival
 import com.example.teamjejudo.room.LikePlace
+import com.example.teamjejudo.screen.like.LikeFragmentDirections
 import com.example.teamjejudo.screen.like.lprv
 import com.example.teamjejudo.screen.like.lrv
 
@@ -57,6 +59,9 @@ class LikePlaceAdapter(private val items: MutableList<LikePlace>,private val lik
                     }
                 }
                 Thread(r).start()
+            }
+            itemView.setOnClickListener {
+                it.findNavController().navigate(LikeFragmentDirections.actionLikeFragmentToSecondFragment(item.contentid!!))
             }
         }
     }
