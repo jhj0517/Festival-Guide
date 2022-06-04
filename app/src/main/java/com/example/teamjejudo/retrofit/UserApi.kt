@@ -1,5 +1,6 @@
 package com.example.teamjejudo.retrofit
 
+import com.example.teamjejudo.data.AreaBased
 import com.example.teamjejudo.data.Festival
 import com.example.teamjejudo.data.FestivalDetail
 import retrofit2.Call
@@ -27,6 +28,18 @@ interface UserApi {
         @Query("firstImageYN") firstImageYN : String,
         @Query("addrinfoYN") addrinfoYN  :String,
         @Query("overviewYN") overviewYN  :String,
+        @Query("areacodeYN") areacodeYN : String,
         @Query("_type") type: String
     ) : Call<FestivalDetail>
+
+    @GET("areaBasedList")
+    fun getNearPlace(
+        @Query("serviceKey") serviceKey : String,
+        @Query("MobileOS") mobileOS: String,
+        @Query("MobileApp") mobileApp: String,
+        @Query("areaCode") areaCode : Int,
+        @Query("contentTypeId") contentTypeId : Int,
+        @Query("numOfRows") numOfRows : Int,
+        @Query("_type") type: String
+    ) : Call<AreaBased>
 }

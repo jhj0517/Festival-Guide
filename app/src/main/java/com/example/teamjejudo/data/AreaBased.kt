@@ -25,7 +25,7 @@ data class AreaBased(
         ) {
             data class Items(
                 @SerializedName("item")
-                val item: Item
+                val item: List<Item>
             ) {
                 data class Item(
                     @SerializedName("addr1")

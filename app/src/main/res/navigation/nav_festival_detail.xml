@@ -29,6 +29,9 @@
         <argument
             android:name="contentId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_SecondFragment_self"
+            app:destination="@id/SecondFragment" />
     </fragment>
     <fragment
         android:id="@+id/LikeFragment"
