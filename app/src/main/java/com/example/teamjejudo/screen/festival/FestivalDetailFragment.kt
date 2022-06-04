@@ -51,7 +51,7 @@ class FestivalDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         var num = contentId.contentId
         binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            findNavController().popBackStack()
         }
         getDetail(num)
         binding.nearPlaceRV.layoutManager =
