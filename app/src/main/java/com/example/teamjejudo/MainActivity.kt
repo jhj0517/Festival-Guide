@@ -6,7 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
+import com.example.teamjejudo.data.Festival
 import com.example.teamjejudo.databinding.ActivityMainBinding
+import com.example.teamjejudo.retrofit.Key
+import com.example.teamjejudo.retrofit.RetrofitClass
+import retrofit2.Call
+import retrofit2.Response
+import java.net.URLDecoder
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,4 +35,17 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
+}
+fun test(){
+    val retrofit = RetrofitClass().api.getFestivals(URLDecoder.decode(Key,"UTF-8"),"AND","App","20220604","json")
+    retrofit.enqueue(object : retrofit2.Callback<Festival>{
+        override fun onResponse(call: Call<Festival>, response: Response<Festival>) {
+            //할것
+        }
+
+        override fun onFailure(call: Call<Festival>, t: Throwable) {
+            t.printStackTrace()
+        }
+
+    })
 }
