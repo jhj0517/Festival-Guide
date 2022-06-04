@@ -1,5 +1,6 @@
 package com.example.teamjejudo.screen.festival
 
+import android.annotation.SuppressLint
 import android.hardware.lights.LightsManager
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamjejudo.R
 import com.example.teamjejudo.adapter.FestivalAdapter
@@ -47,12 +49,29 @@ class FestivalFragment : Fragment() {
         getFestival()
         initFestivalAdapter()
         frv = binding.rvFestival
-        binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-        }
         binding.goLikeFragment.setOnClickListener {
             findNavController().navigate(R.id.action_FIrstFragment_to_LikeFragment)
+
         }
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(frv)
+        frv.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            var currentPosition = RecyclerView.NO_POSITION
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if(recyclerView.layoutManager!=null){
+                    val view = snapHelper.findSnapView(recyclerView.layoutManager)!!
+                    val position = recyclerView.layoutManager!!.getPosition(view)
+
+                    if (currentPosition!= position){
+                        currentPosition = position
+                    }
+                }
+            }
+        })
+
+
     }
 
     private fun initFestivalAdapter() {
@@ -75,6 +94,7 @@ class FestivalFragment : Fragment() {
     private fun getFestival(){
         val retrofit = RetrofitClass().api.getFestivals(URLDecoder.decode(Key,"UTF-8"),"AND","App","20220604","json")
         retrofit.enqueue(object : retrofit2.Callback<Festival>{
+            @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<Festival>, response: Response<Festival>) {
                 festival.addAll(response.body()!!.response.body.items.item)
                 binding.rvFestival.adapter?.notifyDataSetChanged()

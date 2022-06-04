@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/iv_festival_represent"
+        android:id="@+id/iv_place_represent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/view2"
@@ -22,10 +22,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_festival_represent" />
+        app:layout_constraintTop_toBottomOf="@id/iv_place_represent" />
 
     <TextView
-        android:id="@+id/tv_festival_title"
+        android:id="@+id/tv_place_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -35,11 +35,11 @@
         android:paddingEnd="10dp"
         android:textColor="@color/black"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@id/tv_festival_area"
+        app:layout_constraintBottom_toTopOf="@id/tv_place_area"
         app:layout_constraintTop_toTopOf="@id/view2" />
 
     <TextView
-        android:id="@+id/tv_festival_area"
+        android:id="@+id/tv_place_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -49,13 +49,13 @@
         android:paddingEnd="10dp"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@id/tv_festival_date"
-        app:layout_constraintLeft_toLeftOf="@id/tv_festival_title"
-        app:layout_constraintRight_toRightOf="@id/tv_festival_title"
-        app:layout_constraintTop_toBottomOf="@id/tv_festival_title" />
+        app:layout_constraintBottom_toBottomOf="@id/tv_place_date"
+        app:layout_constraintLeft_toLeftOf="@id/tv_place_title"
+        app:layout_constraintRight_toRightOf="@id/tv_place_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_place_title" />
 
     <TextView
-        android:id="@+id/tv_festival_date"
+        android:id="@+id/tv_place_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -65,17 +65,17 @@
         android:paddingEnd="10dp"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="@id/tv_festival_area"
-        app:layout_constraintRight_toRightOf="@id/tv_festival_area"
-        app:layout_constraintTop_toBottomOf="@id/tv_festival_area" />
+        app:layout_constraintLeft_toLeftOf="@id/tv_place_area"
+        app:layout_constraintRight_toRightOf="@id/tv_place_area"
+        app:layout_constraintTop_toBottomOf="@id/tv_place_area" />
 
     <ImageButton
-        android:id="@+id/likeFestivalButton"
+        android:id="@+id/likePlaceButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_festival_represent"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_place_represent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/btn_star_big_off"
         tools:ignore="SpeakableTextPresentCheck"

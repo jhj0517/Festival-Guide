@@ -13,7 +13,6 @@ import com.example.teamjejudo.R
 import com.example.teamjejudo.likeDB
 import com.example.teamjejudo.likeFestivalDB
 import com.example.teamjejudo.room.LikeFestival
-import com.example.teamjejudo.room.LikeFestivalDB
 import com.example.teamjejudo.screen.like.lrv
 
 class LikeFestivalAdapter(
@@ -38,7 +37,7 @@ class LikeFestivalAdapter(
         private val add : TextView = itemView.findViewById(R.id.tv_festival_area)
         private val date : TextView = itemView.findViewById(R.id.tv_festival_date)
         private val image : ImageView = itemView.findViewById(R.id.iv_festival_represent)
-        private val likeButton : ImageButton = itemView.findViewById(R.id.likeButton)
+        private val likeButton : ImageButton = itemView.findViewById(R.id.likeFestivalButton)
         @SuppressLint("NotifyDataSetChanged")
         fun bind(items: MutableList<LikeFestival>, item: LikeFestival, likes: MutableList<Int>){
             title.text=item.title
