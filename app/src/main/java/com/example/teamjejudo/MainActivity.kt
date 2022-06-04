@@ -36,16 +36,3 @@ class MainActivity : AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 }
-fun test(){
-    val retrofit = RetrofitClass().api.getFestivals(URLDecoder.decode(Key,"UTF-8"),"AND","App","20220604","json")
-    retrofit.enqueue(object : retrofit2.Callback<Festival>{
-        override fun onResponse(call: Call<Festival>, response: Response<Festival>) {
-            //할것
-        }
-
-        override fun onFailure(call: Call<Festival>, t: Throwable) {
-            t.printStackTrace()
-        }
-
-    })
-}

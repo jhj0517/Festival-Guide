@@ -4,11 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.teamjejudo.data.Festival
 import com.example.teamjejudo.databinding.CellFestivalBinding
 import timber.log.Timber
 
-class FestivalAdapter(private val festivalData: List<Festival>, context: Context) :
+class FestivalAdapter(private val festivalData: List<Festival.Response.Body.Items.Item>, context: Context) :
     RecyclerView.Adapter<FestivalAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FestivalAdapter.ViewHolder {
@@ -27,10 +28,11 @@ class FestivalAdapter(private val festivalData: List<Festival>, context: Context
     inner class ViewHolder(private val binding: CellFestivalBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(festival: Festival) {
-            binding.tvFestivalTitle.text = festival.festivalTitle
-            binding.tvFestivalArea.text = festival.festivalArea.toString()
-            binding.tvFestivalDate.text = festival.startDate + " ~ " + festival.endDate
+        fun bind(festival: Festival.Response.Body.Items.Item) {
+            binding.tvFestivalTitle.text = festival.title
+            binding.tvFestivalArea.text = festival.addr1
+            binding.tvFestivalDate.text = "${festival.eventstartdate} ~ ${festival.eventenddate}"
+            Glide.with(itemView.context).load(festival.firstimage).into(binding.ivFestivalRepresent)
         }
     }
 }

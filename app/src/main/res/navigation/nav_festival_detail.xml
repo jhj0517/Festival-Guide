@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_FIrstFragment_to_LikeFragment"
+            app:destination="@+id/LikeFragment"/>
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -24,5 +27,15 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/LikeFragment"
+        android:name="com.example.teamjejudo.screen.like.LikeFragment"
+        android:label="Like Fragment"
+        tools:layout="@layout/fragment_like">
+        <action
+            android:id="@+id/action_LikeFragment_to_FIrstFragment"
+            app:destination="@id/FirstFragment"
+            />
     </fragment>
 </navigation>
