@@ -14,15 +14,29 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_FIrstFragment_to_LikeFragment"
+            app:destination="@+id/LikeFragment" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.example.teamjejudo.screen.festival.FestivalDetailFragment"
         android:label="@string/festival_detail_fragment_label"
         tools:layout="@layout/fragment_festival_detail">
-
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+        <argument
+            android:name="contentId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/LikeFragment"
+        android:name="com.example.teamjejudo.screen.like.LikeFragment"
+        android:label="Like Fragment"
+        tools:layout="@layout/fragment_like">
+        <action
+            android:id="@+id/action_LikeFragment_to_FIrstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
 </navigation>

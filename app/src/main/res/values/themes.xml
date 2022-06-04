@@ -22,4 +22,10 @@
     <style name="Theme.TeamJeJuDo.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.TeamJeJuDo.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:height">1dp</item>
+        <item name="color">#575656</item>
+    </style>
 </resources>

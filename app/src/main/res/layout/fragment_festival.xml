@@ -25,7 +25,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/ongoing_festival_rv_margin_top"
         android:clipToPadding="false"
-        android:paddingStart="30dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -34,12 +33,16 @@
 
         />
 
-    <Button
-        android:id="@+id/button_first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="다음"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <ImageButton
+        android:id="@+id/goLikeFragment"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:src="@android:drawable/btn_star_big_on"
+        android:background="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/tv_ongoing_festival_title"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
