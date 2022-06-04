@@ -1,5 +1,6 @@
 package com.example.teamjejudo.data
 
+import com.example.teamjejudo.room.LikeFestival
 import com.google.gson.annotations.SerializedName
 
 //http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival
@@ -58,7 +59,7 @@ data class Festival(
                     @SerializedName("mapx")
                     val mapx: Double,
                     @SerializedName("mapy")
-                    val mapy: Any,
+                    val mapy: Double,
                     @SerializedName("mlevel")
                     val mlevel: Int,
                     @SerializedName("modifiedtime")
@@ -71,7 +72,34 @@ data class Festival(
                     val tel: String,
                     @SerializedName("title")
                     val title: String
-                )
+                ) {
+                    fun toEntity(): LikeFestival {
+
+                        return LikeFestival(
+                            addr1,
+                            addr2,
+                            areacode,
+                            cat1,
+                            cat2,
+                            cat3,
+                            contentid,
+                            contenttypeid,
+                            createdtime,
+                            eventenddate,
+                            eventstartdate,
+                            firstimage,
+                            firstimage2,
+                            mapx,
+                            mapy,
+                            mlevel,
+                            modifiedtime,
+                            readcount,
+                            sigungucode,
+                            tel,
+                            title
+                        )
+                    }
+                }
             }
         }
 

@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.teamjejudo.R
 import com.example.teamjejudo.adapter.FestivalAdapter
 import com.example.teamjejudo.data.Festival
 import com.example.teamjejudo.databinding.FragmentFestivalBinding
+import com.example.teamjejudo.likeDB
 import com.example.teamjejudo.retrofit.Key
 import com.example.teamjejudo.retrofit.RetrofitClass
 import retrofit2.Call
@@ -21,10 +23,12 @@ import timber.log.Timber
 import java.net.URLDecoder
 import java.util.ArrayList
 
+lateinit var frv : RecyclerView
 class FestivalFragment : Fragment() {
 
     private var _binding: FragmentFestivalBinding? = null
     private var festival = ArrayList<Festival.Response.Body.Items.Item>()
+    private var likes : MutableList<Int> = mutableListOf()
 
     private val binding get() = _binding!!
 
@@ -42,7 +46,7 @@ class FestivalFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         getFestival()
         initFestivalAdapter()
-
+        frv = binding.rvFestival
         binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
@@ -52,7 +56,11 @@ class FestivalFragment : Fragment() {
     }
 
     private fun initFestivalAdapter() {
-        binding.rvFestival.adapter = FestivalAdapter(festival, requireContext())
+        val r = Runnable {
+            likes.addAll(likeDB.dao().getAll())
+        }
+        Thread(r).start()
+        binding.rvFestival.adapter = FestivalAdapter(festival, requireContext(), likes)
         binding.rvFestival.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         Timber.d("sdfsdfsdfsdfsdfsdf")
@@ -64,7 +72,7 @@ class FestivalFragment : Fragment() {
         _binding = null
     }
 
-    fun getFestival(){
+    private fun getFestival(){
         val retrofit = RetrofitClass().api.getFestivals(URLDecoder.decode(Key,"UTF-8"),"AND","App","20220604","json")
         retrofit.enqueue(object : retrofit2.Callback<Festival>{
             override fun onResponse(call: Call<Festival>, response: Response<Festival>) {
