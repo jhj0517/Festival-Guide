@@ -4,9 +4,12 @@ import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.hardware.lights.LightsManager
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
@@ -15,6 +18,7 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamjejudo.R
 import com.example.teamjejudo.adapter.FestivalAdapter
+import com.example.teamjejudo.adapter.SearchAdapter
 import com.example.teamjejudo.data.Festival
 import com.example.teamjejudo.databinding.FragmentFestivalBinding
 import com.example.teamjejudo.likeDB
@@ -34,7 +38,7 @@ class FestivalFragment : Fragment() {
     private var likes : MutableList<Int> = mutableListOf()
     private val binding get() = _binding!!
     lateinit var progress : ProgressDialog
-
+    private val adapter = SearchAdapter(festival)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,8 +60,11 @@ class FestivalFragment : Fragment() {
         frv = binding.rvFestival
         binding.goLikeFragment.setOnClickListener {
             findNavController().navigate(R.id.action_FIrstFragment_to_LikeFragment)
-
         }
+        binding.searchRecyclerView.layoutManager=LinearLayoutManager(view.context)
+        binding.searchRecyclerView.setHasFixedSize(true)
+        binding.searchRecyclerView.adapter=adapter
+
         val snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(frv)
         frv.addOnScrollListener(object : RecyclerView.OnScrollListener(){
@@ -74,6 +81,30 @@ class FestivalFragment : Fragment() {
                     }
                 }
             }
+        })
+
+        binding.searchFestival.setOnFocusChangeListener{ v, focus ->
+            if(focus){
+
+                binding.searchRecyclerView.visibility = View.VISIBLE
+            }
+            else {
+                binding.searchRecyclerView.visibility = View.GONE
+            }
+        }
+        binding.searchFestival.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+               adapter.filter.filter(p0)
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
         })
 
 
@@ -96,13 +127,16 @@ class FestivalFragment : Fragment() {
         _binding = null
     }
 
+
+
     private fun getFestival(){
-        val retrofit = RetrofitClass().api.getFestivals(URLDecoder.decode(Key,"UTF-8"),"AND","App","20220604","json")
+        val retrofit = RetrofitClass().api.getFestivals(URLDecoder.decode(Key,"UTF-8"),"AND","App","20220604",1000,"json")
         retrofit.enqueue(object : retrofit2.Callback<Festival>{
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<Festival>, response: Response<Festival>) {
                 festival.addAll(response.body()!!.response.body.items.item)
                 binding.rvFestival.adapter?.notifyDataSetChanged()
+                adapter.submitList(festival)
                 progress.dismiss()
             }
 

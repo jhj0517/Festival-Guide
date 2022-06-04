@@ -6,11 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".screen.festival.FestivalFragment">
 
+    <EditText
+        android:id="@+id/searchFestival"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/square_border"
+        android:hint="축제 검색"
+        android:padding="5dp"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <TextView
         android:id="@+id/tv_ongoing_festival_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ongoing_festival_title_margin_top"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/font_bold"
         android:gravity="center"
         android:text="@string/ongoing_festival_title"
@@ -37,25 +52,26 @@
         android:id="@+id/goLikeFragment"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:background="#00FFFFFF"
         android:src="@android:drawable/btn_star_big_on"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_ongoing_festival_title"
         app:layout_constraintEnd_toEndOf="@+id/tv_ongoing_festival_title"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_ongoing_festival_title"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <TextView
-        android:id="@+id/tv_ongoing_festival_title2"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/font_bold"
-        android:gravity="center"
-        android:text="주변 관광지"
-        android:textSize="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_festival" />
+        android:layout_height="250dp"
+        app:layout_constraintEnd_toEndOf="@+id/searchFestival"
+        app:layout_constraintStart_toStartOf="@+id/searchFestival"
+        app:layout_constraintTop_toBottomOf="@+id/searchFestival"
+        android:elevation="2dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:id="@+id/searchRecyclerView"
+        tools:listitem="@layout/cell_festival_forsearch"
+        android:background="@color/white"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
