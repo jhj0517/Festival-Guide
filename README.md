@@ -7,7 +7,7 @@ https://github.com/jhj0517/Festival-Guide/assets/97279763/b868dca7-6a5f-46b8-a24
 
 # Feature
 - 축제 위치, 일정 등의 정보를 RecyclerView 로 제공 (시간 순 정렬)
-- 축제 및 행사 키워드 **검색**
+- 축제 및 행사 키워드 검색
 - 선호하는 축제를 RecyclerView 에서 좋아요를 클릭해 `Room` 으로 로컬 DB에 저장
     - 저장된 축제는 개인 페이지에서 관리 가능
 
