@@ -20,7 +20,7 @@ https://github.com/jhj0517/Festival-Guide/assets/97279763/b868dca7-6a5f-46b8-a24
 | Glide | 축제 이미지 표시 |
 
 # Part
-- `Recyclerview` 에서 `Filterable` 을 활용한 축제 키워드 검색 구현
+- `Recyclerview` 에서 `Filterable` 을 활용한 축제 검색 구현
     - [한글 초성 검색 라이브러리](https://github.com/jhj0517/KoreanChoseongSearch) 활용
 - REST API 의 엔드포인트 별 `Retrofit` 인터페이스 작성
 
